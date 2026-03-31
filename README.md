@@ -1,6 +1,6 @@
 adminas:
 admin@gmail.com
-admin
+slaptazodis: admin
 
 paleisti terminala:
 npm run seek
