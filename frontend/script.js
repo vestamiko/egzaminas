@@ -1,6 +1,9 @@
 const API = "http://localhost:8000/api/dishes";
 
+// const UNSPLASH_KEY = "1kzL5D4rxEZZlTTIcKwnezzbxBHQI2AFLIxhM_MKmtw";
+
 const UNSPLASH_KEY = "NrEOPDsEbByygJbWAHUboXuADOhnn48dyi7n6sgZdSw";
+
 
 let dishes = [];
 let cart = [];
@@ -240,7 +243,7 @@ async function deleteDish(id) {
  loadDishes();
 }
 
-// ================= EDIT =================
+// EDIT 
 function editDish(id) {
   const dish = dishes.find((d) => d._id === id);
 
