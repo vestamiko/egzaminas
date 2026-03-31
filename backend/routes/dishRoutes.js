@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
  getDishes,
  createDish,
- rateDish,
+ // rateDish,
  deleteDish,
  updateDish,
 } = require("../controllers/dishController");
