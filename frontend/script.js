@@ -11,7 +11,7 @@ const isAdmin = user && user.role && user.role.toLowerCase() === "admin";
 const grid = document.getElementById("grid");
 const modal = document.getElementById("modal");
 
-// FIX: saugus token paėmimas
+// token paėmimas
 function getToken() {
   const t = localStorage.getItem("token");
   try {
@@ -87,7 +87,7 @@ async function addDish() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}` // 🔥 FIX
+      "Authorization": `Bearer ${token}` 
     },
     body: JSON.stringify({
       title,
@@ -110,14 +110,14 @@ async function addDish() {
 
 loadDishes();
 
-// ================= LOAD =================
+// LOAD
 async function loadDishes() {
   const res = await fetch(API);
   dishes = await res.json();
   renderDishes(dishes);
 }
 
-// ================= CREATE CARD =================
+//  CREATE CARD 
 function createDishCard(dish) {
   const card = document.createElement("div");
   card.className = "card";
@@ -169,7 +169,6 @@ img.src =
   // ADMIN
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
-// ADMIN
 if (true) {
 
     const editBtn = document.createElement("button");
@@ -196,7 +195,7 @@ if (true) {
   return card;
 }
 
-// ================= RENDER =================
+// RENDER
 function renderDishes(data) {
   if (!grid) return;
 
@@ -208,9 +207,9 @@ function renderDishes(data) {
   });
 }
 
-// ================= RATE =================
+// RATE 
 async function ivertintiPatiekala(id) {
-  const token = getToken(); // 🔥 FIX
+  const token = getToken(); 
 
   if (!token) {
     alert("Prisijunk!");
@@ -220,21 +219,21 @@ async function ivertintiPatiekala(id) {
   await fetch(`${API}/${id}/rate`, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${token}` // 🔥 FIX
+      "Authorization": `Bearer ${token}` 
     }
   });
 }
 
-// ================= DELETE =================
+// DELETE 
 async function deleteDish(id) {
  if (!confirm("Ar tikrai ištrinti?")) return;
 
- const token = getToken(); // 🔥 FIX
+ const token = getToken(); 
 
  await fetch(`${API}/${id}`, {
    method: "DELETE",
    headers: {
-     "Authorization": `Bearer ${token}` // 🔥 FIX
+     "Authorization": `Bearer ${token}` 
    }
  });
 
@@ -285,7 +284,7 @@ function editDish(id) {
   modal.appendChild(content);
 }
 
-// ================= UPDATE =================
+// UPDATE 
 async function updateDish(id, title, price, image, description) {
   let imgValue = image.value;
 
@@ -297,7 +296,7 @@ async function updateDish(id, title, price, image, description) {
     method: "PUT",
     headers: {
  "Content-Type": "application/json",
- "Authorization": `Bearer ${getToken()}` // 🔥 FIX
+ "Authorization": `Bearer ${getToken()}` 
 },
     body: JSON.stringify({
       title: title.value,
@@ -311,7 +310,7 @@ async function updateDish(id, title, price, image, description) {
   loadDishes();
 }
 
-// ================= CART =================
+// CART 
 function addToCart(dish) {
   cart.push(dish);
   renderCart();
@@ -339,7 +338,7 @@ function renderCart() {
   });
 }
 
-// ================= MODAL =================
+// MODAL 
 function openModal(dish) {
   const modal = document.getElementById("modal");
   modal.innerHTML = "";
@@ -348,7 +347,7 @@ function openModal(dish) {
   const content = document.createElement("div");
   content.className = "modal-content";
 
-  // 👉 jei nėra dish → ADD mode
+  // jei nėra dish → ADD mode
   if (!dish) {
     const titleInput = document.createElement("input");
     titleInput.placeholder = "Pavadinimas";
@@ -433,7 +432,7 @@ async function addDishFromModal(titleInput, priceInput, descInput) {
   closeModal();
 }
  
-// ================= CLOSE =================
+// CLOSE
 function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
@@ -443,12 +442,12 @@ async function register() {
  const email = document.getElementById("email").value;
  const password = document.getElementById("password").value;
 
- const res = await fetch(`http://localhost:8000/api/auth/register`, { // 🔥 FIX
+ const res = await fetch(`http://localhost:8000/api/auth/register`, {
    method: "POST",
    headers: {
      "Content-Type": "application/json"
    },
-   body: JSON.stringify({ userEmail: email, userPassword: password }) // 🔥 FIX
+   body: JSON.stringify({ userEmail: email, userPassword: password })
  });
 
  const data = await res.json();
@@ -481,7 +480,6 @@ async function login() {
     return;
   }
 
-  // SVARBIAUSIA PATAISA
  if (data.user) {
   localStorage.setItem("user", JSON.stringify(data.user));
 }
@@ -525,7 +523,7 @@ function renderAuth() {
     container.append(loginBtn, registerBtn);
   }
 }
-// ================= START =================
+// START 
 if (document.getElementById("dishes")) {
  loadDishes();
 }
